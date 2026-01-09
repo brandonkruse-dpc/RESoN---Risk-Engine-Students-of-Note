@@ -1,0 +1,7 @@
+{
+  "name": "RE:SoN - Risk Engine",
+  "description": "A comprehensive risk identification and tracking system for IB DP Coordinators, integrating ManageBac data with AI-powered predictive analysis to identify students needing support.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

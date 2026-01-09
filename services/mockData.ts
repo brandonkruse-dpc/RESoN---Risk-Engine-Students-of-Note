@@ -1,5 +1,5 @@
 
-import { Student, RiskLevel } from '../types';
+import { Student, RiskLevel } from '../types.ts';
 
 export const MOCK_STUDENTS: Student[] = [
   {

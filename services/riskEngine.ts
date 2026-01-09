@@ -1,5 +1,5 @@
 
-import { Student, RiskWeights, RiskLevel, SubjectGrade } from '../types';
+import { Student, RiskWeights, RiskLevel, SubjectGrade } from '../types.ts';
 
 export const calculateRiskScore = (student: Student, weights: RiskWeights): number => {
   // 1. Attendance Risk

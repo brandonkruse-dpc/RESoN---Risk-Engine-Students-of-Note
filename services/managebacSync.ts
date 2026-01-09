@@ -1,5 +1,5 @@
 
-import { Student, BackendConfig } from '../types';
+import { Student, BackendConfig } from '../types.ts';
 
 /**
  * RE:SoN BRIDGE SERVICE

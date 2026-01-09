@@ -5,33 +5,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RE:SoN | Risk Engine: Students of Note</title>
+    
+    <!-- Dependencies -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
     <script>
-      // Shim process for browser environment
+      // Shim process for browser environment to prevent crashes on API calls
       window.process = window.process || { env: { API_KEY: "" } };
+      
+      // Configure Babel to handle TypeScript and React
+      // We also need to help Babel handle ES Modules correctly in some environments
+      Babel.registerPreset("reson-preset", {
+        presets: [
+          [Babel.availablePresets["typescript"], { allExtensions: true, isTSX: true }],
+          [Babel.availablePresets["react"], { runtime: "classic" }]
+        ]
+      });
     </script>
+
     <style>
         body { font-family: 'Inter', sans-serif; }
         .mono { font-family: 'JetBrains Mono', monospace; }
+        /* Prevent layout shift during Babel compilation */
+        [id="root"]:empty::before {
+          content: "Loading RE:SoN Engine...";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-weight: 800;
+          color: #1e1b4b;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          font-size: 0.75rem;
+        }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "recharts": "https://esm.sh/recharts@^3.6.0",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
-    "@google/genai": "https://esm.sh/@google/genai@^1.35.0"
-  }
-}
-</script>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "recharts": "https://esm.sh/recharts@^3.6.0",
+        "react/": "https://esm.sh/react@^19.2.3/",
+        "react": "https://esm.sh/react@^19.2.3",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+        "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
+        "@google/genai": "https://esm.sh/@google/genai@^1.35.0"
+      }
+    }
+    </script>
 </head>
 <body class="bg-slate-50 text-slate-900">
     <div id="root"></div>
-    <script type="module" src="./index.tsx"></script>
+    
+    <!-- 
+      Note: We use type="text/babel" so Babel Standalone intercepts this.
+      data-presets="react,typescript" tells Babel what to do.
+      data-type="module" is required for Babel to handle ES6 imports.
+    -->
+    <script 
+      type="text/babel" 
+      data-presets="reson-preset" 
+      data-type="module" 
+      src="./index.tsx">
+    </script>
 </body>
 </html>

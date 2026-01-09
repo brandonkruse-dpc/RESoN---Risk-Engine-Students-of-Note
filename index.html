@@ -12,7 +12,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
     <script>
       // Shim process for environment safety
@@ -20,7 +20,7 @@
     </script>
 
     <style>
-        body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; overflow: hidden; }
+        body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; overflow: hidden; background-color: #f8fafc; }
         .mono { font-family: 'JetBrains Mono', monospace; }
         
         /* Smooth loading overlay */
@@ -35,15 +35,21 @@
           color: #818cf8;
           font-weight: 900;
           font-size: 0.75rem;
-          letter-spacing: 0.2em;
+          letter-spacing: 0.3em;
           z-index: 9999;
         }
 
         /* Scrollbar styles */
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
     </style>
 
     <script type="importmap">
@@ -60,7 +66,7 @@
 }
 </script>
 </head>
-<body class="bg-slate-50 text-slate-900 text-left">
+<body class="text-slate-900">
     <div id="root"></div>
     
     <script 

@@ -2,11 +2,10 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Student } from "../types.ts";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+// Initializing GoogleGenAI with process.env.API_KEY directly as per guidelines
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const generateStudentRiskSummary = async (student: Student) => {
-  if (!process.env.API_KEY) return "AI Summary unavailable: No API Key provided.";
-  
   const prompt = `
     As an IB DP Coordinator, summarize the risk factors for this student:
     Name: ${student.name}
@@ -21,10 +20,12 @@ export const generateStudentRiskSummary = async (student: Student) => {
   `;
 
   try {
+    // Calling generateContent with model name and prompt directly as per guidelines
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
       contents: prompt,
     });
+    // Accessing .text as a property, not a method, as per guidelines
     return response.text || "Summary generation failed.";
   } catch (err) {
     console.error(err);
@@ -46,10 +47,12 @@ export const generateBatchReport = async (students: Student[]) => {
   `;
 
   try {
+    // Calling generateContent with model name and prompt directly as per guidelines
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
       contents: prompt,
     });
+    // Accessing .text as a property, not a method, as per guidelines
     return response.text;
   } catch (err) {
     return "Batch report generation failed.";
